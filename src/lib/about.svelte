@@ -107,6 +107,8 @@
         padding: 0.2vh;
     }
     .box {
+        display: flex;
+        flex-direction: column;
         border: 3px solid #004f75;
         text-align: center;
         max-width: 800px;
