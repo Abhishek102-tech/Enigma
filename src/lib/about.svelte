@@ -6,15 +6,55 @@
         "E-Cell NMIT collaborates with industry experts, successful entrepreneurs, and mentors to provide valuable insights and guidance to our members. We believe in the power of networking and community building, and we actively engage with local startups, incubators, and accelerators to create opportunities for our members.",
         "Join us on this exciting journey of innovation and entrepreneurship. Whether you have a groundbreaking idea or simply want to learn more about the startup ecosystem, E-Cell NMIT welcomes you to be a part of our dynamic community."
     ];
+    let current = 0;
+    let isMobile = false;
+    let startX = 0;
+    let endX = 0;
+
+    // Detect mobile
+    if (typeof window !== 'undefined') {
+        isMobile = window.matchMedia('(max-width: 768px)').matches;
+        window.addEventListener('resize', () => {
+            isMobile = window.matchMedia('(max-width: 768px)').matches;
+        });
+    }
+
+    function prev() {
+        current = (current - 1 + aboutText.length) % aboutText.length;
+    }
+    function next() {
+        current = (current + 1) % aboutText.length;
+    }
+    function handleTouchStart(e) {
+        startX = e.touches[0].clientX;
+    }
+    function handleTouchEnd(e) {
+        endX = e.changedTouches[0].clientX;
+        if (startX - endX > 50) {
+            next();
+        } else if (endX - startX > 50) {
+            prev();
+        }
+    }
 </script>
 
 <div>
     <div class="about">
-    <h1>About</h1>
-    <div class="box">
-    <p>{aboutText[0]}</p>
+        <h1>About</h1>
+        <div class="box"
+            on:touchstart={isMobile ? handleTouchStart : undefined}
+            on:touchend={isMobile ? handleTouchEnd : undefined}
+        >
+            <p>{aboutText[current]}</p>
+            {#if !isMobile}
+                <div class="slider-buttons">
+                    <button class="slider-btn left" on:click={prev}>&lt;</button>
+                    <button class="slider-btn right" on:click={next}>&gt;</button>
+                </div>
+            {/if}
+        </div>
     </div>
-    </div>
+
     <img src={rocket} alt="" class="rocket">
 </div>
 
@@ -26,6 +66,27 @@
         align-items: center;
         justify-content: center;
         padding: 1vh 0.6vw;
+    }
+    .slider-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 2vw;
+        margin-top: 1vh;
+    }
+    .slider-btn {
+        background: #0E1A2B;
+        color: #00FFFF;
+        border: 2px solid #00FFFF;
+        border-radius: 50%;
+        width: 2.5rem;
+        height: 2.5rem;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s;
+    }
+    .slider-btn:hover {
+        background: #00FFFF;
+        color: #0E1A2B;
     }
     .about{
         display: flex;
@@ -67,8 +128,6 @@
         line-height: 1.6;
     }
     @media (max-width: 768px) {
-        div {
-        }
         .box {
             width: 40vw;
         }
