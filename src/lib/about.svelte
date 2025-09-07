@@ -52,6 +52,13 @@
                     <button class="slider-btn right" on:click={next}>&gt;</button>
                 </div>
             {/if}
+            {#if isMobile}
+                <div class="dots">
+                    {#each aboutText as _, i}
+                        <span class="dot {i === current ? 'active' : ''}"></span>
+                    {/each}
+                </div>
+            {/if}
         </div>
     </div>
 
@@ -59,6 +66,25 @@
 </div>
 
 <style>
+    .dots {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        gap: 0.7rem;
+        margin-top: 1.2rem;
+    }
+    .dot {
+        width: 0.8rem;
+        height: 0.8rem;
+        border-radius: 50%;
+        background: #004f75;
+        opacity: 0.5;
+        transition: background 0.2s, opacity 0.2s;
+    }
+    .dot.active {
+        background: #00FFFF;
+        opacity: 1;
+    }
     div {
         display: flex;
         flex-direction: row;
