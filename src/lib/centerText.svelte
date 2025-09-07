@@ -51,6 +51,23 @@
         font-size: 1.4rem;
         cursor: pointer;
     } 
+    button:hover {
+        background: #00FFFF;
+        color: #0E1A2B;
+        transition: background 0.2s, color 0.2s;
+        animation: glow 1.5s infinite;
+    }
+    @keyframes glow {
+        0% {
+            box-shadow: 0 0 5px #00FFFF;
+        }
+        50% {
+            box-shadow: 0 0 20px #00FFFF;
+        }
+        100% {
+            box-shadow: 0 0 5px #00FFFF;
+        }
+    }
     @media (max-width: 768px) {
         h1 {
             font-size: 2.2rem;

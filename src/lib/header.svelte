@@ -78,6 +78,9 @@
         height: 13vh;
         background:#0E1A2B ;
     }
+    .logo:hover{
+        cursor: pointer;
+    }
 
     .transfers {
         display: flex;
@@ -101,6 +104,23 @@
         font-size: 1.1rem;
         cursor: pointer;
     } 
+    button:hover {
+        background: #00FFFF;
+        color: #0E1A2B;
+        box-shadow: 0 0 16px 4px #00aaff;
+        transition: glow 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    }
+    @keyframes glow {
+        0% {
+            box-shadow: 0 0 5px #00FFFF;
+        }
+        50% {
+            box-shadow: 0 0 20px #00FFFF;
+        }
+        100% {
+            box-shadow: 0 0 5px #00FFFF;
+        }
+    }
     @media (max-width: 768px) {
         .logo img {
             height: 8vh;
