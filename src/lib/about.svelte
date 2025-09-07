@@ -130,14 +130,35 @@
         line-height: 1.6;
     }
     @media (max-width: 768px) {
-        .box {
-            width: 40vw;
+        div {
+            flex-direction: column;
+            align-items: center;
+            padding: 0.5vh 0.7vw;
+            width: fit-content;
+            max-width: 95vw;
         }
-        p{
-            font-size: 0.7rem;
+        .about {
+            align-items: center;
+            padding: 0;
+        }
+        .box {
+            width: 90vw;
+            max-width: 90vw;
+            padding: 0.5vh 1vw;
+        }
+        h1 {
+            font-size: 2rem;
+            margin: 1vh 0;
+        }
+        p {
+            font-size: 1rem;
         }
         .rocket {
-            height: 30vh;
+            margin-top: 2vh;
+            height: 40vh;
+        }
+        .slider-buttons {
+            gap: 6vw;
         }
     }
 </style>
